@@ -13,7 +13,7 @@ let validateTitle = /^[^0-9][a-z , A-Z0-9_ ? @ ! $ % & * : ]+$/;
 
 const createBook = async (req, res) => {
   try {
-    let data = JSON.parse(req.body.data);
+    let data = req.body;
     let files = req.files;
 
     let uploadedFileURL;
@@ -155,7 +155,7 @@ const createBook = async (req, res) => {
     res.status(201).send({ status: true, data: otherData });
   } catch (error) {
     console.log("error in create book", error.message);
-    res.send(error.message);
+    res.status(500).send(error.message);
   }
 };
 
